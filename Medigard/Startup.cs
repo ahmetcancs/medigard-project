@@ -6,10 +6,13 @@ using Medigard.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,14 +20,16 @@ namespace Medigard
 {
     public class Startup
     {
-        
+
         public const string DEFAULT_WITHOUT_LANGUAGE_PREFIX_ROUTE_NAME = "DefaultWithoutLanguagePrefix";
-        public const string CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS = "Home";
+        public const string CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS = "Home|Detail";
 
         public IWebHostEnvironment Environment { get; }
+        
 
         public Startup(IWebHostEnvironment environment)
         {
+            
             Environment = environment;
         }
 
@@ -72,41 +77,43 @@ namespace Medigard
                 app.UseDeveloperExceptionPage();
             }
 
-           
+
 
             app.UseStaticFiles();
 
             app.UseKentico();
 
-
+            app.UseRouting();
 
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.Kentico().MapRoutes();
+                //endpoints.Kentico().MapRoutes();
+                // endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
 
+                //endpoints.MapControllerRoute(
+                //   name: "default",
+                //   pattern: $"{{culture}}/{{controller}}/{{action}}",
+                //   constraints: new
+                //   {
+                //       culture = new SiteCultureConstraint { HideLanguagePrefixForDefaultCulture = true },
+                //       controller = CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS
+                //   }
 
+                //);
+                //endpoints.MapControllerRoute(
+                //    name: DEFAULT_WITHOUT_LANGUAGE_PREFIX_ROUTE_NAME,
+                //    pattern: "{controller}/{action}",
+                //    constraints: new
+                //    {
+                //        controller = CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS
+                //    }
 
-                endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: $"{{culture}}/{{controller}}/{{action}}",
-                   constraints: new
-                   {
-                       culture = new SiteCultureConstraint { HideLanguagePrefixForDefaultCulture = true },
-                       controller = CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS
-                   }
-                   
-                );
-                endpoints.MapControllerRoute(
-                    name: DEFAULT_WITHOUT_LANGUAGE_PREFIX_ROUTE_NAME,
-                    pattern: "{controller}/{action}",
-                    constraints: new
-                    {
-                        controller = CONSTRAINT_FOR_NON_ROUTER_PAGE_CONTROLLERS
-                    }
-                    
-                );
+                //);
+
             });
+
         }
     }
 }

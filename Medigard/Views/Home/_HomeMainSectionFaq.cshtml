@@ -1,0 +1,44 @@
+﻿@model Medigard.Models.Home.HomeMainSectionFaqViewModel
+@using CMS.Helpers;
+@{
+    int counter = 1;
+
+}
+
+<section class="general-section bg-img" data-id="5">
+    <img class="d-none d-md-block" data-toggle="bitb" src="@Model.Image1" alt="" />
+    <img class="d-md-none" data-toggle="bitb" src="@Model.Image2" alt="" />
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-18 col-24">
+                <div class="section-header">
+                    <h3 class="title secondary bordered bottom">@ResHelper.GetString("Medigard.Faq")</h3>
+                </div>
+            </div>
+        </div>
+        <div class="sss-wrapper">
+            <div class="accordion-list" id="accordion" role="tablist">
+                @foreach (var item in Model.ItemList)
+                {
+                    <div class="panel list-item">
+                        <div class="panel-heading" role="tab" id="heading-@counter">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-@counter" aria-expanded="@(counter == 1 ? "true" : "false")" aria-controls="collapse-@counter">
+                                    @item.Question
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-@counter" class="panel-collapse collapse@(counter == 1 ? "in show" : "") " role="tabpanel" aria-labelledby="heading-@counter" data-parent="#accordion">
+                            <div class="panel-body">
+                                @Html.Raw(item.Answer)
+                            </div>
+                        </div>
+                    </div>
+                    counter++;
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>

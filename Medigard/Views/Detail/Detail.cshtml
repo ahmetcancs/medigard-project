@@ -1,0 +1,8 @@
+﻿@model Medigard.Models.Detail.DetailViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("~/Views/Detail/_DetailSlider.cshtml", Model.DetailSlider)
+@Html.Partial("~/Views/Detail/_DetailContent.cshtml", Model.DetailContent)
