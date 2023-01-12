@@ -1,0 +1,23 @@
+﻿@model Medigard.Models.Home.HomeSliderViewModel
+
+
+<section class="section-slider">
+    <div class="home-wrapper">
+        <div class="home-slider owl-carousel">
+            <div class="item" style="background-image: url('@Model.MainImage')">
+                <div class="row">
+                    <div class="offset-xxl-12 offset-lg-14 offset-12 col-xxl-9 col-lg-7 col-10">
+                        <img class="img-fluid" src="@Model.Image1" alt="" />
+                        <img class="img-fluid" src="@Model.Image2" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-bar">
+            <a class="btn-bar" data-toggle="anchor" href="#1">
+                <i class="icon icon-arrow-down"></i>
+            </a>
+        </div>
+    </div>
+</section>

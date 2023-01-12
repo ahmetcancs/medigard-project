@@ -1,0 +1,29 @@
+﻿@model Medigard.Models.Home.HomeMainSectionGraphicViewModel
+
+<section class="general-section partical left right" data-id="3">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-5 col-lg-14 col-24">
+                <div class="section-header">
+                    <h3 class="title bordered bottom">@Model.Title</h3>
+                    <div class="text">
+                        <p>@Html.Raw(Model.Description1)</p>
+                    </div>
+
+                    <figure class="section-image">
+                        <img class="img-fluid" src="@Model.Image" alt="">
+                    </figure>
+
+                    <div class="text">
+                        <p>@Html.Raw(Model.Description2)</p>
+                    </div>
+
+                    <div class="subtitle">
+                        <p>@Model.SubTitle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

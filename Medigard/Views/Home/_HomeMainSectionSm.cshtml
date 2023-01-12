@@ -1,0 +1,77 @@
+﻿@model Medigard.Models.Home.HomeMainSectionSmViewModel
+@using CMS.Helpers;
+
+<section class="general-section">
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-3 col-lg-18 col-24">
+                <div class="section-header">
+                    <h3 class="title bordered bottom">@ResHelper.GetString("Medigard.SocialMedia")</h3>
+                    <div class="text">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-media-wrapper">
+        <div class="container">
+            <div class="social-media-slider owl-carousel">
+                @foreach (var item in Model.ItemList)
+                {<div class="social-media-card">
+                        <figure class="card-media">
+                            <img class="img-responsive" src="@item.Image" alt="" />
+
+                            <div class="card-content">
+                                <div class="text">
+                                    @Html.Raw(item.Explanation)
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="card-footer">
+                            <div class="item">
+                                <ul class="list">
+                                    <li class="list-item">
+                                        <a class="link" href="#" title="" data-toggle="like">
+                                            <i class="icon icon-like"></i>
+                                            <div class="text">
+                                                <span>@item.Like</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a class="link" href="#" title="" data-toggle="like">
+                                            <i class="icon icon-comment"></i>
+                                            <div class="text">
+                                                <span>@item.Comment</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <figure class="social-media-icon">
+                                    <img class="img-fluid" src="@item.Icon" alt="" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="custom-slider-control"></div>
+            <div class="icons-wrapper">
+                <div class="social-icons">
+                    @foreach (var item in Model.IconList)
+                    {
+                        <a class="item">
+                            <i class="icon icon-@item.SocialIcon"></i>
+                        </a>
+                    } 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+</section>

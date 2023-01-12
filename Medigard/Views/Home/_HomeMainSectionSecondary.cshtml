@@ -1,0 +1,81 @@
+﻿@model Medigard.Models.Home.HomeMainSectionSecondaryViewModel
+@{
+    int counter = 1;
+
+}
+<section class="general-section secondary">
+    <div class="container">
+
+        @foreach (var item in Model.ItemList)
+        {
+            <div class="row">
+                <div class="offset-lg-7 col-lg-10">
+                    <div class="section-header">
+                        <h3 class="title bordered left-right">
+                            <span>@item.Title</span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-slider-wrapper" data-toggle="tab">
+                <div class="slider-area">
+                    <div class="tab-slider owl-carousel nav">
+
+                        @foreach (var subitem in item.ItemList)
+                        {
+                            <div class="nav-item">
+                                <div class="tab @(subitem.Active == true ? "active" : "")" data-toggle="tab" role="tab" data-target="#@(subitem.SecondaryTab == true ? "secondary-" : "")tab-@counter">
+                                    <div class="item">
+                                        @if (string.IsNullOrEmpty(subitem.SubTitle))
+                                        {
+                                            <span class="single-title">@subitem.Title</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="title">@subitem.Title</span>
+                                            <span class="subtitle">@subitem.SubTitle</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            counter++;
+
+                        }
+                    </div>
+                    <div class="custom-slider-control">
+                        @*<button type="button" role="presentation" class="owl-prev">
+		                    <i class="icon icon-arrow-left"></i>
+	                    </button>
+                        <button type="button" role="presentation" class="owl-next">
+                            <i class="icon icon-arrow-right"></i>
+                        </button>*@
+                    </div>
+                        @{counter = 1;}
+                        
+                    
+                </div>
+                
+                <div class="tab-content">
+                    
+                    @foreach (var description in item.ItemList)
+                    { 
+                        <div class="tab-pane fade @(description.Active == true ? "show active" : "")" id="@(description.SecondaryTab == true ? "secondary-" : "")tab-@counter">
+                            <div class="tab-body">
+                                @Html.Raw(description.Description)
+                            </div>
+                        </div>
+                        
+                        counter++;
+                        
+                    }
+                    
+                    @{counter = 1;}
+                    
+                </div>
+            </div>
+
+        }
+
+    </div>
+</section>

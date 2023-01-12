@@ -1,0 +1,33 @@
+﻿@model Medigard.Models.Detail.DetailContentViewModel
+@using CMS.Helpers;
+
+<section class="general-section tertirary">
+    <div class="container">
+        <div class="detail-wrapper">
+            <div class="row">
+                <div class="col-lg-14">
+                    <div class="section-header">
+                        <h3 class="title bordered bottom">@ResHelper.GetString("Medigard.DetailItemTitle")</h3>
+                    </div>
+                </div>
+                @foreach (var item in Model.ItemList)
+                {
+                    <div class="col-lg-14">
+                        <h3 class="desc">@item.Title</h3>
+                        @Html.Raw(item.Description)
+                        <figure class="detail-img d-lg-none d-block">
+                            <img class="img-fluid" src="@item.Image" alt="">
+                        </figure>
+                    </div>
+                    <div class="offset-lg-1 col-lg-9">
+                        <figure class="detail-img d-lg-block d-none">
+                            <img class="img-fluid" src="@item.Image" alt="">
+                        </figure>
+                    </div>
+                }
+                
+
+            </div>
+        </div>
+    </div>
+</section>
